@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # 1. Serviço: O Banco de Dados (SQL Server)
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server-db
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SuaSenhaForte123
+    volumes:
+      - sql-server-data:/var/opt/mssql
+      - ./sql-init:/docker-entrypoint-initdb.d
+
+    entrypoint: ["/bin/bash", "/docker-entrypoint-initdb.d/run-init.sh"]
+
+  # 2. Serviço: A sua API Java (Spring Boot) - (A PARTE ADICIONADA)
+  app:
+    container_name: investimento-api
+    # Constrói a imagem usando o Dockerfile no diretório atual
+    build: .
+    ports:
+      # Expõe a porta 8080 da API para o seu PC
+      - "8080:8080"
+      
+    depends_on:
+      - db
+    
+    # Injeta as variáveis de ambiente que o application.properties espera
+    environment:
+      - DB_HOST=db # Conecta-se ao 'db' (nome do serviço acima)
+      - DB_PORT=1433
+      - DB_NAME=investimentoDB # O nome do banco criado pelo setup.sql
+      - DB_USER=sa
+      - DB_PASS=SuaSenhaForte123 # A mesma senha do 'db'
+      - JAVA_OPTS=-Xmx512m
+
+
+volumes:
+  sql-server-data:
