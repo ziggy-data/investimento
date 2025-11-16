@@ -16,7 +16,7 @@ services:
 
     entrypoint: ["/bin/bash", "/docker-entrypoint-initdb.d/run-init.sh"]
 
-  # 2. Serviço: A sua API Java (Spring Boot) - (A PARTE ADICIONADA)
+  # 2. Serviço: A sua API Java (Spring Boot) 
   app:
     container_name: investimento-api
     # Constrói a imagem usando o Dockerfile no diretório atual
