@@ -231,3 +231,11 @@ O projeto buscou atender aos 4 critérios de avaliação definidos:
     * *Status:* **Concluído**. A API implementa JWT (Autenticação) e um `GlobalExceptionHandler` que padroniza todas as respostas de erro (400, 401, 404, 500).
 4.  **Testes unitários e integração:** 
     * *Status:* **Concluído**. O projeto possui uma suíte de testes (JUnit 5 + Mockito) e testes de integração (`@SpringBootTest` + `@DataJpaTest`) com 95% de cobertura de código (JaCoCo).
+
+
+## 📞 Contato
+
+-   **Nome:** Reinaldo Albuquerque Simoes
+-   **E-mail:** reinaldo.simoes@caixa.gov.br
+-   **Trilha:** Dev Back-end Java | Nível II (mas fiz as aulas do nível III)
+-   **Matrícula:** C159442-1
